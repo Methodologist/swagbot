@@ -6,7 +6,7 @@ from selenium.webdriver.common.action_chains import *
 
 
 class PythonOrgSearch(unittest.TestCase):
-    #Must download chromedriver.exe, easy to find with a quick search.
+    #Implemented ChromeDriver, firefoxdriver is outdated and now called marionettedriver, also known as GeckoDriver
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path="C:\drivers\chromedriver.exe")
 
@@ -42,8 +42,6 @@ class PythonOrgSearch(unittest.TestCase):
                         driver.find_element_by_xpath("/html/body/aside/article[{}]/ul/li[1]/a".format(i)).send_keys(Keys.CONTROL + Keys.ENTER)
                         ActionChains(driver).key_down(Keys.CONTROL).send_keys(Keys.TAB).key_up(Keys.CONTROL).perform()
                         driver.switch_to.window(driver.window_handles[1])
-                        time.sleep(3)
-                        ActionChains(driver).send_keys(Keys.ESCAPE).perform()
                         totalchecks = driver.find_elements_by_class_name('iconCheckmark')
                         if vidcount != len(totalchecks):
                             driver.find_element_by_id('wayToGo') or driver.find_element_by_id('vdb_501707fc-4361-4b38-912e-0df55098fb15')
