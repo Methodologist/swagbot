@@ -44,7 +44,7 @@ class PythonOrgSearch(unittest.TestCase):
                         driver.switch_to.window(driver.window_handles[1])
                         totalchecks = driver.find_elements_by_class_name('iconCheckmark')
                         if vidcount != len(totalchecks):
-                            driver.find_element_by_id('wayToGo') or driver.find_element_by_id('vdb_501707fc-4361-4b38-912e-0df55098fb15')
+                            driver.find_element_by_id('wayToGo') or driver.find_element_by_id('vdb_501707fc-4361-4b38-912e-0df55098fb15') or driver.find_element_by_class_name('ulive-error-container')
                         driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 'w')
                         time.sleep(3)
                         driver.switch_to.window(driver.window_handles[0])
@@ -52,6 +52,7 @@ class PythonOrgSearch(unittest.TestCase):
                         ActionChains(driver).move_to_element(logo).perform()
                         time.sleep(3)
                     else:
+                        driver.switch_to.window(driver.window_handles[0])
                         listhead.clear()
                         menu = driver.find_elements_by_xpath(".//*[contains(@id,'sbMainNavSectionListItemWatchCategory')]")
                         for category in menu[1::len(menu)-1]:
